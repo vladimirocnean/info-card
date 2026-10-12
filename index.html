@@ -2,55 +2,34 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Картка запису</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Єдине вікно — фрейм</title>
 <style>
-/* Layout: одна центрована картка, таблиця «поле — значення» з чергуванням фону рядків */
-:root{
-  --page:#e9e9e9; --card:#ffffff; --stripe:#f3f3f3; --rule:#e0e0e0;
-  --label:#5f5f5f; --value:#000000; --badge-bg:#f3f3f3; --badge-fg:#5f5f5f;
-  --font:"Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  color-scheme:light;
-}
-body{background:var(--page);color:var(--value);font-family:var(--font);padding:32px 16px}
-.card{max-width:986px;margin:0 auto;background:var(--card);border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);padding-block:28px 24px;overflow:hidden}
-.head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  margin:0 30px 12px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
-h1{font-size:24px;font-weight:400;margin:0}
-.badge{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  background:var(--badge-bg);color:var(--badge-fg);padding:4px 10px;border-radius:4px}
-dl{margin:0}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;
-  min-height:70px;padding:12px 30px;box-sizing:border-box}
-.row:nth-child(odd){background:var(--stripe)}
-dt{color:var(--label);font-size:18px;min-width:0}
-dd{margin:0;font-size:18px;line-height:1.55;min-width:0;font-variant-numeric:tabular-nums}
-@media (max-width:600px){
-  .head{margin:0 16px 12px}
-  .row{grid-template-columns:1fr;gap:4px;padding:14px 16px}
-  dt{font-size:14px} dd{font-size:16px}
-}
+  html,body{margin:0;padding:0;height:100%;background:#e9e9e9}
+  .wrap{position:relative;width:100%;height:100vh}
+  .frame{display:block;width:100%;height:100%;border:0}
+  .close{
+    position:absolute;top:12px;right:12px;z-index:10;
+    width:36px;height:36px;border:0;border-radius:50%;cursor:pointer;
+    background:rgba(0,0,0,.55);color:#fff;font-size:20px;line-height:36px;
+    text-align:center;padding:0;transition:background .15s;
+    box-shadow:0 1px 4px rgba(0,0,0,.25)
+  }
+  .close:hover{background:rgba(0,0,0,.75)}
+  .wrap.closed .frame,.wrap.closed .close{display:none}
 </style>
 </head>
 <body>
-
-<main class="card">
-  <div class="head">
-    <h1>Картка запису</h1>
-    <span class="badge">Зразок · демо-дані</span>
+  <div class="wrap" id="wrap">
+    <button class="close" id="closeBtn" title="Закрити" aria-label="Закрити">&times;</button>
+    <iframe class="frame" title="Витяг"
+      srcdoc='<!doctype html><html lang=&quot;uk&quot;><head><meta charset=&quot;utf-8&quot;><meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,viewport-fit=cover&quot;><title>Єдине вікно</title><link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap&quot;><style>:root{--page:#e9e9e9;--card:#ffffff;--stripe:#f3f3f3;--rule:#e0e0e0;--label:#5f5f5f;--value:#000000;--badge-bg:#f3f3f3;--badge-fg:#5f5f5f;--font:&quot;Roboto&quot;, system-ui, -apple-system, &quot;Segoe UI&quot;, Arial, sans-serif;color-scheme:light}body{background:var(--page);color:var(--value);font-family:var(--font);padding:32px 16px}.card{max-width:986px;margin:0 auto;background:var(--card);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding-block:28px 24px;overflow:hidden}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 30px 12px;padding-bottom:16px;border-bottom:1px solid var(--rule)}h1{font-size:24px;font-weight:400;margin:0}.badge{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:var(--badge-bg);color:var(--badge-fg);padding:4px 10px;border-radius:4px}dl{margin:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;min-height:70px;padding:12px 30px;box-sizing:border-box}.row:nth-child(odd){background:var(--stripe)}dt{color:var(--label);font-size:18px;min-width:0}dd{margin:0;font-size:18px;line-height:1.55;min-width:0;font-variant-numeric:tabular-nums}@media (max-width:600px){.head{margin:0 16px 12px}.row{grid-template-columns:1fr;gap:4px;padding:14px 16px}dt{font-size:14px}dd{font-size:16px}}</style></head><body><main class=&quot;card&quot;><div class=&quot;head&quot;><h1>Витяг</h1><span class=&quot;badge&quot;></span></div><dl><div class=&quot;row&quot;><dt>Дата видачі</dt><dd>01.01.2030</dd></div><div class=&quot;row&quot;><dt>Мета запиту</dt><dd>Подання до установ іноземних держав</dd></div><div class=&quot;row&quot;><dt>Тип документу</dt><dd>Витяг</dd></div><div class=&quot;row&quot;><dt>ПІБ</dt><dd>ІВАН ТЕСТОВИЙ ПРИКЛАДЕНКО</dd></div><div class=&quot;row&quot;><dt>Дата народження</dt><dd>01.01.2000</dd></div><div class=&quot;row&quot;><dt>Громадянство (Країна)</dt><dd>УКРАЇНА</dd></div><div class=&quot;row&quot;><dt>Текст Витягу</dt><dd>Відомості про наявність незнятої чи непогашеної судимості: ВІДСУТНІ</dd></div><div class=&quot;row&quot;><dt>Особа без громадянства</dt><dd>Ні</dd></div></dl></main></body></html>'>
+    </iframe>
   </div>
-  <dl>
-    <div class="row"><dt>Дата створення</dt><dd>01.01.2030</dd></div>
-    <div class="row"><dt>Призначення</dt><dd>Демонстрація інтерфейсу</dd></div>
-    <div class="row"><dt>Тип запису</dt><dd>Тестовий профіль</dd></div>
-    <div class="row"><dt>Ім'я</dt><dd>ІВАН ТЕСТОВИЙ ПРИКЛАДЕНКО</dd></div>
-    <div class="row"><dt>Дата народження</dt><dd>01.01.2000</dd></div>
-    <div class="row"><dt>Країна</dt><dd>НЕ ВКАЗАНО</dd></div>
-    <div class="row"><dt>Примітка</dt><dd>Усі дані на цій сторінці вигадані й використовуються лише як приклад верстки.</dd></div>
-    <div class="row"><dt>Статус</dt><dd>Активний</dd></div>
-  </dl>
-</main>
+  <script>
+    document.getElementById('closeBtn').addEventListener('click', function(){
+      window.location.href = 'https://services.mvs.gov.ua/iac/services/criminal-record-search';
+    });
+  </script>
 </body>
 </html>
